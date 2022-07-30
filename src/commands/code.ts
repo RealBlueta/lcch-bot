@@ -16,7 +16,7 @@ export default new (class CodeCommand implements Command {
 	async run(interaction: ChatInputCommandInteraction) {
 		// takes code and makes image
 		// LCCH.createImage
-		const code = interaction.options.get('code')!.value;
+		const code = interaction.options.getString('code')!;
 		interaction.reply(`Hello ${code}!`);
 	}
 })();
