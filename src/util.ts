@@ -1,14 +1,13 @@
-import base64 from 'base-64';
 import Jimp from 'jimp';
 import replaceAll from 'string.prototype.replaceall';
 import { RGBA } from './types';
 
 function encode_bytes(bytes: Uint8Array): string {
-    return [...bytes].map((b) => String.fromCharCode(b)).join('');
+	return [...bytes].map((b) => String.fromCharCode(b)).join('');
 }
 
 function decode_bytes(b64: string): Uint8Array {
-    return new Uint8Array;
+	return new Uint8Array();
 }
 
 export class LCCH {
@@ -33,14 +32,18 @@ export class LCCH {
 			}
 		}
 
-		return `LCCH-${width}-${replaceAll(replaceAll(encode_bytes(bytes), "=", ""), "\n", "")}`; 
+		return `LCCH-${width}-${replaceAll(
+			replaceAll(encode_bytes(bytes), '=', ''),
+			'\n',
+			''
+		)}`;
 	}
 
 	static fromCode(lcch: string): boolean[] | null {
 		const TEXTURE_SIZE = 37;
 		const split: string[] = lcch.trim().split('-');
 
-		if ((split.length != 3) || !(split[0] == 'LCCH')) return null;
+		if (split.length != 3 || !(split[0] == 'LCCH')) return null;
 
 		try {
 			const size = Number.parseInt(split[1]);
@@ -51,7 +54,8 @@ export class LCCH {
 			for (var x = 0; x < size; x++) {
 				for (var y = 0; y < size; y++) {
 					const index = x + offset + (y + offset) * TEXTURE_SIZE;
-					if (index < 0 || index >= TEXTURE_SIZE * TEXTURE_SIZE) continue; // size > internal size, ignore this
+					if (index < 0 || index >= TEXTURE_SIZE * TEXTURE_SIZE)
+						continue; // size > internal size, ignore this
 					const bIndex = (x + y * size) / 8;
 					const bit = 1 << (x + y * size) % 8;
 					crosshair[index] = (decoded[bIndex] & bit) != 0;
