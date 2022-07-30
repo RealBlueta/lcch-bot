@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, CommandInteraction, Interaction } from 'discord.js';
+import { ChatInputCommandInteraction, Interaction } from 'discord.js';
 import Client from '../components/client';
 
 export default async function (interaction: Interaction) {
