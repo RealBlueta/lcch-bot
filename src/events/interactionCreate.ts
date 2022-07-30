@@ -3,9 +3,10 @@ import Client from '../components/client';
 
 export default async function (interaction: Interaction) {
 	const client = interaction.client as Client;
-	if (!interaction.isCommand()) return;
-	for (const command of client.commands) {
-		if (command.data.name !== interaction.commandName) continue;
-		command.run(interaction as CommandInteraction);
+	if (interaction.isChatInputCommand()) {
+		for (const command of client.commands) {
+			if (command.data.name !== interaction.commandName) continue;
+			command.run(interaction as CommandInteraction);
+		}
 	}
 }

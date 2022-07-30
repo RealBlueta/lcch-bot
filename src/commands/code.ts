@@ -3,13 +3,20 @@ import { Command } from '../types';
 import { LCCH } from '../util';
 
 export default new (class CodeCommand implements Command {
-	data: SlashCommandBuilder = new SlashCommandBuilder()
+	data = new SlashCommandBuilder()
 		.setName('code')
-		.setDescription('Convert LCCH code into PNG');
+		.setDescription('Convert LCCH code into PNG')
+		.addStringOption((option) =>
+			option
+				.setName('code')
+				.setDescription('The LCCH code')
+				.setRequired(true)
+		);
 
 	async run(interaction: CommandInteraction) {
 		// takes code and makes image
 		// LCCH.createImage
-		interaction.reply('Hello!');
+		const code = interaction.options.get('code')!.value;
+		interaction.reply(`Hello ${code}!`);
 	}
 })();
