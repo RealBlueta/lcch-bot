@@ -2,7 +2,7 @@ import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
 import { LCCH } from '../util';
 
-export default new (class ImagifyCommand implements Command {
+export default new (class implements Command {
 	data = new SlashCommandBuilder()
 		.setName('imagify')
 		.setDescription('Convert LCCH code into PNG')
