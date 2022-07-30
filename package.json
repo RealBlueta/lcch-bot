@@ -3,7 +3,7 @@
   "description": "Complementary bot for Lunar Client Crosshairs. Converts any image file into a 'Lunar Client-Compatible' crosshair.",
   "main": "src/index.ts",
   "scripts": {
-    "dev:run": "nodemon src/index.ts"
+    "dev:start": "nodemon src/index.ts"
   },
   "keywords": [
     "lcch",
