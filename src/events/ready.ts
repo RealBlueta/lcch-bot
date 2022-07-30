@@ -11,6 +11,7 @@ export default async function () {
 			description: command.description,
 		});
 	}
+	console.log(guildCommands)
 	client.guilds.cache.get(GUILD_ID)?.commands.set(guildCommands);
 
 	console.log(`${client.user!.tag} has logged in!`);
