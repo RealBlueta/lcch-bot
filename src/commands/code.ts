@@ -12,7 +12,8 @@ export default new (class CodeCommand implements Command {
     }
 
     async run(interaction: CommandInteraction) {
-        // LCCH.fromCode
+        // takes code and makes image
+        // LCCH.createImage
         interaction.reply("Hello!");
     }
 });

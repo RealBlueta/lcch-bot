@@ -11,6 +11,7 @@ function decode_bytes(b64: string): Uint8Array {
 }
 
 export class LCCH {
+	/* Transforms Base64 Image into LCCH-Code */
 	static async toCode(b64: string): Promise<string> {
 		const raw = b64.replace(/^data:image\/\w+;base64,/, '');
 		const image = await Jimp.read(Buffer.from(raw, 'base64'));
@@ -39,6 +40,7 @@ export class LCCH {
 		)}`;
 	}
 
+	/* Transforms LCCH-Code into Boolean Array */
 	static fromCode(lcch: string): boolean[] | null {
 		const TEXTURE_SIZE = 37;
 		const split: string[] = lcch.trim().split('-');
@@ -68,6 +70,7 @@ export class LCCH {
 		}
 	}
 
+	/* Creates a JIMP Image from LCCH-Code */
     static createImage(code: string): Jimp | null {
         const width = parseInt(code.split('-')[1]);
         if (isNaN(width)) return null;
