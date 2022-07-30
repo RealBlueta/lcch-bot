@@ -2,9 +2,9 @@ import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
 import { LCCH } from '../util';
 
-export default new (class ImageCommand implements Command {
+export default new (class CodifyCommand implements Command {
 	data: SlashCommandBuilder = new SlashCommandBuilder()
-		.setName('image')
+		.setName('codify')
 		.setDescription('Convert PNG image into LCCH code');
 
 	async run(interaction: ChatInputCommandInteraction) {
