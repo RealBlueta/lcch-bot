@@ -16,17 +16,17 @@ async function main() {
 	const commands = readdirSync('src/commands');
 	for (const file of commands) {
 		if (!file.endsWith('.ts')) continue;
-		const command: Command = await import(`./commands/${file}`);
-		client.commands.add((command as any).default);
+		const command: Command = (await import(`./commands/${file}`)).default;
+		client.commands.add(command);
 	}
 
 	// Load Events
 	const events = readdirSync('src/events');
 	for (const file of events) {
 		if (!file.endsWith('.ts')) continue;
-		const event = await import(`./events/${file}`);
+		const event = (await import(`./events/${file}`)).default;
 		const event_name = file.substring(0, file.length - 3);
-		client.on(event_name, (event as any).default);
+		client.on(event_name, event);
 	}
 
 	// Login
