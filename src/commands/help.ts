@@ -3,10 +3,10 @@ import { Command } from '../types';
 
 export default new (class implements Command {
 	data: SlashCommandBuilder = new SlashCommandBuilder()
-		.setName('test')
-		.setDescription('test command');
+		.setName('help')
+		.setDescription('List all possible LCCH commands');
 
 	async run(interaction: ChatInputCommandInteraction) {
-		interaction.reply('Hello!');
+		interaction.reply('todo!');
 	}
 })();
