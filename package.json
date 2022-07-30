@@ -19,6 +19,10 @@
     "jimp": "^0.16.0",
     "string.prototype.replaceall": "^1.0.6"
   },
+  "repository": {
+    "url": "https://github.com/SmellyJay/lcch-bot",
+    "type": "git"
+  },
   "devDependencies": {
     "nodemon": "^2.0.19"
   }
