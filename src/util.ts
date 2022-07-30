@@ -67,4 +67,17 @@ export class LCCH {
 			return null;
 		}
 	}
+
+    static createImage(code: string): Jimp | null {
+        const width = parseInt(code.split('-')[1]);
+        if (isNaN(width)) return null;
+
+        const image = new Jimp(width, width, 'black');
+        const crosshair = LCCH.fromCode(code);
+        if (crosshair == null) return null;
+
+        // todo
+
+        return image;
+    }
 }
