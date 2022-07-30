@@ -1,8 +1,8 @@
-import { CommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction } from 'discord.js';
 
 export interface Command {
 	data: any;
-	run: (interaction: CommandInteraction) => Promise<void> | void;
+	run: (interaction: ChatInputCommandInteraction) => Promise<void> | void;
 }
 
 export interface RGBA {

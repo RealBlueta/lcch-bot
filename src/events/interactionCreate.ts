@@ -1,4 +1,4 @@
-import { CommandInteraction, Interaction } from 'discord.js';
+import { ChatInputCommandInteraction, CommandInteraction, Interaction } from 'discord.js';
 import Client from '../components/client';
 
 export default async function (interaction: Interaction) {
@@ -6,7 +6,7 @@ export default async function (interaction: Interaction) {
 	if (interaction.isChatInputCommand()) {
 		for (const command of client.commands) {
 			if (command.data.name !== interaction.commandName) continue;
-			command.run(interaction as CommandInteraction);
+			command.run(interaction as ChatInputCommandInteraction);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
+import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
 import { LCCH } from '../util';
 
@@ -13,7 +13,7 @@ export default new (class CodeCommand implements Command {
 				.setRequired(true)
 		);
 
-	async run(interaction: CommandInteraction) {
+	async run(interaction: ChatInputCommandInteraction) {
 		// takes code and makes image
 		// LCCH.createImage
 		const code = interaction.options.get('code')!.value;
