@@ -10,7 +10,6 @@ config();
 const client = new Client({
     intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers],
 });
-export default client;
 
 async function main() {
     // Load Comamnds
