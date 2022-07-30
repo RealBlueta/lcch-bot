@@ -1,15 +1,11 @@
-import { CommandInteraction } from 'discord.js';
+import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
 import { LCCH } from '../util';
 
 export default new (class ImageCommand implements Command {
-	name: string;
-	description: string;
-
-	constructor() {
-		this.name = 'image';
-		this.description = 'Image Command test';
-	}
+	data: SlashCommandBuilder = new SlashCommandBuilder()
+		.setName('image')
+		.setDescription('Convert PNG image into LCCH code');
 
 	async run(interaction: CommandInteraction) {
 		// takes image and makes code
