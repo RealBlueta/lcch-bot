@@ -2,13 +2,13 @@ import base64 from 'base-64';
 import Jimp from 'jimp';
 import { RGBA } from './types';
 
-function encode_bytes(bytes: Uint8Array): string {
+export function encode_bytes(bytes: Uint8Array): string {
 	return base64.encode(
 		[...bytes].map((b) => String.fromCharCode(b)).join('')
 	);
 }
 
-function decode_bytes(b64: string): Uint8Array {
+export function decode_bytes(b64: string): Uint8Array {
 	const b = base64.decode(b64);
 	const bytes = new Uint8Array();
 	for (let i = 0; i < b.length; ++i) bytes[i] = b[i].charCodeAt(0);
@@ -66,23 +66,11 @@ export class LCCH {
 				}
 			}
 
+			// turn into image somehow
+
 			return crosshair;
 		} catch {
 			return null;
 		}
-	}
-
-	/* Creates a JIMP Image from LCCH-Code */
-	static createImage(code: string): Jimp | null {
-		const width = parseInt(code.split('-')[1]);
-		if (isNaN(width)) return null;
-
-		const image = new Jimp(width, width, 'black');
-		// const crosshair = LCCH.fromCode(code);
-		// if (crosshair == null) return null;
-
-		// todo
-
-		return image;
 	}
 }

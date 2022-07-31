@@ -28,17 +28,16 @@ export default new (class implements Command {
 			// tell user that the image must be below or atleast 37x37
 		}
 
-		const url = input.url;
-		const code = await LCCH.toCode(
-			(
-				await axios.get(url, {
-					responseEncoding: 'base64',
-				})
-			).data
-		);
+		const resp = await axios.get(input.url, {
+			responseEncoding: 'base64',
+		});
+		if (resp.status != 200) {
+			return interaction.reply('failed to fetch');
+		}
 
+		const code = await LCCH.toCode(resp.data);
 		if (code == null) {
-			return interaction.reply('failed');
+			return interaction.reply('failed to create');
 		}
 
 		interaction.reply(code);
