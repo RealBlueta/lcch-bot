@@ -1,3 +1,5 @@
+import axios from 'axios';
+import base64 from 'base-64';
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
 import { LCCH } from '../util';
@@ -16,6 +18,29 @@ export default new (class implements Command {
 	async run(interaction: ChatInputCommandInteraction) {
 		// takes image and makes code
 		// LCCH.toCode
-		interaction.reply('Hello!');
+		const input = interaction.options.getAttachment('input', true);
+
+		if (!input.contentType!.includes('image')) {
+			// tell user that the attatchment must be of type image
+		}
+
+		if (!(input.width! <= 37) && !(input.height! <= 37)) {
+			// tell user that the image must be below or atleast 37x37
+		}
+
+		const url = input.url;
+		const code = await LCCH.toCode(
+			(
+				await axios.get(url, {
+					responseEncoding: 'base64',
+				})
+			).data
+		);
+
+		if (code == null) {
+			return interaction.reply('failed');
+		}
+
+		interaction.reply(code);
 	}
 })();
