@@ -45,14 +45,12 @@ export class LCCH {
 	/* Transforms LCCH-Code into Boolean Array */
 	static fromCode(lcch: string): boolean[] | null {
 		const TEXTURE_SIZE = 37;
-		const split: string[] = lcch.trim().split('-');
-
-		if (split.length != 3 || !(split[0] == 'LCCH')) return null;
-
+		const slices = lcch.trim().split('-');
+		if (slices.length != 3 || !(slices[0] == 'LCCH')) return null;
 		try {
-			const size = Number.parseInt(split[1]);
 			const crosshair: boolean[] = [];
-			const decoded = decode_bytes(split[2]);
+			const size = Number.parseInt(slices[1]);
+			const decoded = decode_bytes(slices[2]);
 			const offset = Math.floor((TEXTURE_SIZE - size) / parseFloat('2f'));
 
 			for (var x = 0; x < size; x++) {
