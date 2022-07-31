@@ -1,20 +1,24 @@
+import base64 from 'base-64';
 import Jimp from 'jimp';
-import replaceAll from 'string.prototype.replaceall';
 import { RGBA } from './types';
 
 function encode_bytes(bytes: Uint8Array): string {
-	return [...bytes].map((b) => String.fromCharCode(b)).join('');
+	return base64.encode(
+		[...bytes].map((b) => String.fromCharCode(b)).join('')
+	);
 }
 
 function decode_bytes(b64: string): Uint8Array {
-	return new Uint8Array();
+	const b = base64.decode(b64);
+	const bytes = new Uint8Array();
+	for (let i = 0; i < b.length; ++i) bytes[i] = b[i].charCodeAt(0);
+	return bytes;
 }
 
 export class LCCH {
 	/* Transforms Base64 Image into LCCH-Code */
 	static async toCode(b64: string): Promise<string> {
-		const raw = b64.replace(/^data:image\/\w+;base64,/, '');
-		const image = await Jimp.read(Buffer.from(raw, 'base64'));
+		const image = await Jimp.read(Buffer.from(b64, 'base64'));
 
 		const width = image.getWidth();
 		const height = image.getHeight();
@@ -33,11 +37,9 @@ export class LCCH {
 			}
 		}
 
-		return `LCCH-${width}-${replaceAll(
-			replaceAll(encode_bytes(bytes), '=', ''),
-			'\n',
-			''
-		)}`;
+		return `LCCH-${width}-${encode_bytes(bytes)
+			.replace(/=/gi, '')
+			.replace(/\n/gi, '')}`;
 	}
 
 	/* Transforms LCCH-Code into Boolean Array */
@@ -49,7 +51,7 @@ export class LCCH {
 
 		try {
 			const size = Number.parseInt(split[1]);
-			const crosshair = new Boolean[TEXTURE_SIZE * TEXTURE_SIZE]();
+			const crosshair: boolean[] = [];
 			const decoded = decode_bytes(split[2]);
 			const offset = Math.floor((TEXTURE_SIZE - size) / parseFloat('2f'));
 
@@ -76,8 +78,8 @@ export class LCCH {
 		if (isNaN(width)) return null;
 
 		const image = new Jimp(width, width, 'black');
-		const crosshair = LCCH.fromCode(code);
-		if (crosshair == null) return null;
+		// const crosshair = LCCH.fromCode(code);
+		// if (crosshair == null) return null;
 
 		// todo
 
