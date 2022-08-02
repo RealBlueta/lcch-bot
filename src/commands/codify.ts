@@ -16,8 +16,6 @@ export default new (class implements Command {
 		);
 
 	async run(interaction: ChatInputCommandInteraction) {
-		// takes image and makes code
-		// LCCH.toCode
 		const input = interaction.options.getAttachment('input', true);
 
 		if (!input.contentType!.includes('image')) {
@@ -31,13 +29,22 @@ export default new (class implements Command {
 		const resp = await axios.get(input.url, {
 			responseEncoding: 'base64',
 		});
+
+		/* Error if failed to get image from Discord */
 		if (resp.status != 200) {
 			return interaction.reply('failed to fetch');
 		}
 
 		const code = await LCCH.toCode(resp.data);
+
+		/* Error if LCCH.toCode failed (aka returned null) */
 		if (code == null) {
 			return interaction.reply('failed to create');
+		}
+
+		/* Error if Code is too big (shouldn't happen after I implement the comments from the top) */
+		if (code.length >= 2000) {
+			return interaction.reply('code too big');
 		}
 
 		interaction.reply(code);
