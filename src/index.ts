@@ -1,10 +1,8 @@
+import 'dotenv/config';
 import Client from './components/client';
 import { Command } from './types';
 import { IntentsBitField } from 'discord.js';
-import { config } from 'dotenv';
 import { readdirSync } from 'fs';
-
-config();
 
 // Bot
 const client = new Client({
