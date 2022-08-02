@@ -11,17 +11,15 @@ async function main() {
 	});
 
 	// Load Comamnds
-	const commands = readdirSync('src/commands');
+	const commands = readdirSync('src/commands').filter((f) =>f.endsWith('.ts'));
 	for (const file of commands) {
-		if (!file.endsWith('.ts')) continue;
 		const command: Command = (await import(`./commands/${file}`)).default;
 		client.commands.add(command);
 	}
 
 	// Load Events
-	const events = readdirSync('src/events');
+	const events = readdirSync('src/events').filter((f) => f.endsWith('.ts'));
 	for (const file of events) {
-		if (!file.endsWith('.ts')) continue;
 		const event = (await import(`./events/${file}`)).default;
 		client.on(event.name, event);
 	}
