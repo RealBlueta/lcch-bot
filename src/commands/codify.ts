@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { EMBED_COLOR } from '../defaults';
+import { EMBED_COLOR } from '../constants';
 import { Command } from '../types';
 import { LCCH, createErrorEmbed } from '../util';
 

@@ -1,7 +1,7 @@
 import Client from '../components/client';
 import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
-import { EMBED_COLOR } from '../defaults';
+import { EMBED_COLOR } from '../constants';
 
 export default new (class implements Command {
 	data: SlashCommandBuilder = new SlashCommandBuilder()

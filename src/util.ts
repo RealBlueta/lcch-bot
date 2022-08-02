@@ -1,7 +1,7 @@
 import base64 from 'base-64';
 import { EmbedBuilder } from 'discord.js';
 import Jimp from 'jimp';
-import { EMBED_ERROR_COLOR } from './defaults';
+import { EMBED_ERROR_COLOR } from './constants';
 import { RGBA } from './types';
 
 export function encode_bytes(bytes: Uint8Array): string {
