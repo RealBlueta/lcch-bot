@@ -7,10 +7,7 @@ export default new (class implements Command {
 		.setName('imagify')
 		.setDescription('Convert LCCH code into PNG')
 		.addStringOption((option) =>
-			option
-				.setName('code')
-				.setDescription('The LCCH code')
-				.setRequired(true)
+			option.setName('code').setDescription('The LCCH code').setRequired(true)
 		);
 
 	async run(interaction: ChatInputCommandInteraction) {

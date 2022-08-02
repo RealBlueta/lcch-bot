@@ -1,9 +1,5 @@
 import Client from '../components/client';
-import {
-	ChatInputCommandInteraction,
-	EmbedBuilder,
-	SlashCommandBuilder,
-} from 'discord.js';
+import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
 import { EMBED_COLOR } from '../defaults';
 
@@ -14,9 +10,7 @@ export default new (class implements Command {
 
 	async run(interaction: ChatInputCommandInteraction) {
 		const client = interaction.client as Client;
-		const commands = [...client.commands].map(
-			(command) => '/' + command.data.name
-		);
+		const commands = [...client.commands].map((command) => '/' + command.data.name);
 		const embed = new EmbedBuilder()
 			.setColor(EMBED_COLOR)
 			.setAuthor({
@@ -25,9 +19,7 @@ export default new (class implements Command {
 				name: 'Commands',
 			})
 			.setDescription(
-				`Some commands that the bot include, are:\n\`\`\`${commands.join(
-					'\n'
-				)}\`\`\``
+				`Some commands that the bot include, are:\n\`\`\`${commands.join('\n')}\`\`\``
 			)
 			.setFooter({
 				text: new Date().toUTCString(),

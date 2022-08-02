@@ -3,9 +3,7 @@ import Jimp from 'jimp';
 import { RGBA } from './types';
 
 export function encode_bytes(bytes: Uint8Array): string {
-	return base64.encode(
-		[...bytes].map((b) => String.fromCharCode(b)).join('')
-	);
+	return base64.encode([...bytes].map((b) => String.fromCharCode(b)).join(''));
 }
 
 export function decode_bytes(b64: string): Uint8Array {
@@ -37,9 +35,7 @@ export class LCCH {
 			}
 		}
 
-		return `LCCH-${width}-${encode_bytes(bytes)
-			.replace(/=/gi, '')
-			.replace(/\n/gi, '')}`;
+		return `LCCH-${width}-${encode_bytes(bytes).replace(/=/gi, '').replace(/\n/gi, '')}`;
 	}
 
 	/* Transforms LCCH-Code into Boolean Array */
@@ -56,8 +52,7 @@ export class LCCH {
 			for (var x = 0; x < size; x++) {
 				for (var y = 0; y < size; y++) {
 					const index = x + offset + (y + offset) * TEXTURE_SIZE;
-					if (index < 0 || index >= TEXTURE_SIZE * TEXTURE_SIZE)
-						continue; // size > internal size, ignore this
+					if (index < 0 || index >= TEXTURE_SIZE * TEXTURE_SIZE) continue; // size > internal size, ignore this
 					const bIndex = (x + y * size) / 8;
 					const bit = 1 << (x + y * size) % 8;
 					crosshair[index] = (decoded[bIndex] & bit) != 0;
