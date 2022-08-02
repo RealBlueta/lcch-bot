@@ -1,4 +1,3 @@
-import {} from 'discord.js';
 import Client from '../components/client';
 
 export default async function ready(client: Client) {
