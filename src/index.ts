@@ -23,8 +23,7 @@ async function main() {
 	for (const file of events) {
 		if (!file.endsWith('.ts')) continue;
 		const event = (await import(`./events/${file}`)).default;
-		const event_name = file.substring(0, file.length - 3);
-		client.on(event_name, event);
+		client.on(event.name, event);
 	}
 
 	// Login

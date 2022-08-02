@@ -1,7 +1,7 @@
 import {} from 'discord.js';
 import Client from '../components/client';
 
-export default async function (client: Client) {
+export default async function ready(client: Client) {
 	const GUILD_ID = '1002745278459293706';
 	const GUILD_COMMANDS = [...client.commands]
 		.map((command) => command.data)
