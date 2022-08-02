@@ -11,7 +11,7 @@ async function main() {
 	});
 
 	// Load Comamnds
-	const commands = readdirSync('src/commands').filter((f) =>f.endsWith('.ts'));
+	const commands = readdirSync('src/commands').filter((f) => f.endsWith('.ts'));
 	for (const file of commands) {
 		const command: Command = (await import(`./commands/${file}`)).default;
 		client.commands.add(command);
