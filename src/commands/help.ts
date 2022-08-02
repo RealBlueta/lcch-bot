@@ -18,7 +18,9 @@ export default new (class implements Command {
 					'https://images-ext-2.discordapp.net/external/sgPVB2yZDBSt09iaBKvh5L-DXQfYWb4v91Urg7C0450/https/i.imgur.com/bMPc2TT.png', // wrench icon from discord
 				name: 'Commands',
 			})
-			.setDescription(`Usable Bot Slash Commands:\n\`\`\`${commands.join('\n')}\`\`\``)
+			.setDescription(
+				`List Of Usable Bot Slash Commands:\n\`\`\`${commands.join('\n')}\`\`\``
+			)
 			.setFooter({
 				text: new Date().toUTCString(),
 			});
