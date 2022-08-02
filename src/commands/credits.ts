@@ -17,7 +17,7 @@ export default new (class implements Command {
 						name: 'Credits',
 					})
 					.setDescription(
-						' - Bot Developer: SmellyJay#9440\n - Original "Crosshair Expander" Developer: https://twitter.com/Moulberry\n - Twitter User Runner: https://twitter.com/SmelIyJay and (currently susspended Kianna)\n - Support Server: https://inv.wtf/lcch'
+						' - Bot Developer: SmellyJay#9440\n - Original "Crosshair Expander" Developer: https://twitter.com/Moulberry\n - Twitter User Runner: https://twitter.com/SmelIyJay and (currently suspended Kianna)\n - Support Server: https://inv.wtf/lcch'
 					)
 					.setFooter({
 						text: new Date().toUTCString(),
