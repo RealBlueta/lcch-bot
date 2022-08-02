@@ -14,7 +14,9 @@ export default new (class implements Command {
 
 	async run(interaction: ChatInputCommandInteraction) {
 		const client = interaction.client as Client;
-		const commands = [...client.commands].map((x) => '/' + x.data.name);
+		const commands = [...client.commands].map(
+			(command) => '/' + command.data.name
+		);
 		const embed = new EmbedBuilder()
 			.setColor(EMBED_COLOR)
 			.setAuthor({
