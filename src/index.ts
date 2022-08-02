@@ -20,7 +20,7 @@ async function main() {
 	// Load Events
 	const events = readdirSync('src/events').filter((f) => f.endsWith('.ts'));
 	for (const file of events) {
-		const event = (await import(`./events/${file}`)).default;
+		const event: () => void = (await import(`./events/${file}`)).default;
 		client.on(event.name, event);
 	}
 
