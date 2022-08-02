@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
+import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { EMBED_COLOR } from '../defaults';
 import { Command } from '../types';
 import { LCCH, createErrorEmbed } from '../util';
 
@@ -63,8 +64,7 @@ export default new (class implements Command {
 				],
 			});
 
-		// Just copy and import it into the game!
-
+		// TODO: add the stuff below later
 		// DISCLAIMER: If your crosshair doesn't seem right, please make sure that you are using a properly formatted crosshair png.
 		// Format:
 		// - Must have transparent background.
@@ -72,6 +72,15 @@ export default new (class implements Command {
 		// - Must be under or atleast a 37 by 37 image.
 		// (Recommended to keep width and height the same)
 
-		return interaction.reply(code);
+		return interaction.reply({
+			embeds: [
+				new EmbedBuilder()
+					.setColor(EMBED_COLOR)
+					.setDescription(`Just copy and import it into the game!\n\`\`\`${code}\`\`\``)
+					.setFooter({
+						text: new Date().toUTCString(),
+					}),
+			],
+		});
 	}
 })();
