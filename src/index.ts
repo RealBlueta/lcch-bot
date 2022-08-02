@@ -4,12 +4,12 @@ import { Command } from './types';
 import { GatewayIntentBits } from 'discord.js';
 import { readdirSync } from 'fs';
 
-// Bot
-const client = new Client({
-	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
-});
-
 async function main() {
+	// Create Bot Client
+	const client = new Client({
+		intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
+	});
+
 	// Load Comamnds
 	const commands = readdirSync('src/commands');
 	for (const file of commands) {
