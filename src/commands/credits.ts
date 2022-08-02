@@ -9,7 +9,7 @@ export default new (class implements Command {
 
 	async run(interaction: ChatInputCommandInteraction) {
 		const client = interaction.client as Client;
-		interaction.reply('todo!');
+		return interaction.reply('todo!');
 
 		// 📖 Credits
 		// - Bot Developer: SmellyJay#9440

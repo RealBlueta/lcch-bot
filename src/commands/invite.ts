@@ -9,7 +9,8 @@ export default new (class implements Command {
 
 	async run(interaction: ChatInputCommandInteraction) {
 		const client = interaction.client as Client;
-		// https://discord.com/api/oauth2/authorize?client_id=932740051606065262&permissions=277025450048&scope=applications.commands%20bot
-		interaction.reply('todo!');
+		return interaction.reply(
+			'https://discord.com/api/oauth2/authorize?client_id=932740051606065262&permissions=277025450048&scope=applications.commands%20bot'
+		);
 	}
 })();

@@ -14,6 +14,6 @@ export default new (class implements Command {
 		// takes code and makes image
 		// LCCH.createImage
 		const code = interaction.options.getString('code')!;
-		interaction.reply(`Hello ${code}!`);
+		return interaction.reply(`Hello ${code}!`);
 	}
 })();
