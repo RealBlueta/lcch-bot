@@ -1,8 +1,7 @@
 import axios from 'axios';
-import base64 from 'base-64';
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
-import { LCCH } from '../util';
+import { LCCH, createErrorEmbed } from '../util';
 
 export default new (class implements Command {
 	data = new SlashCommandBuilder()
@@ -18,37 +17,61 @@ export default new (class implements Command {
 	async run(interaction: ChatInputCommandInteraction) {
 		const input = interaction.options.getAttachment('input', true);
 
-		if (!input.contentType!.includes('image/png')) {
-			return interaction.reply('the file must be a PNG :P');
-		}
+		if (!input.contentType!.includes('image/png'))
+			return interaction.reply({
+				embeds: [createErrorEmbed('You must provide a proper PNG file!')],
+			});
 
-		if (!(input.width! <= 37) && !(input.height! <= 37)) {
-			return interaction.reply(
-				'soz but image must be under or atleast 37x37 (width and height)'
-			);
-		}
+		if (!(input.width! <= 37) && !(input.height! <= 37))
+			return interaction.reply({
+				embeds: [
+					createErrorEmbed(
+						'The image you provide must be under or atleast 37x37 (width/height)!'
+					),
+				],
+			});
 
-		const resp = await axios.get(input.url, {
+		const response = await axios.get(input.url, {
 			responseEncoding: 'base64',
 		});
 
 		/* Error if failed to get image from Discord */
-		if (resp.status != 200) {
-			return interaction.reply('failed to fetch');
-		}
+		if (response.status != 200)
+			return interaction.reply({
+				embeds: [
+					createErrorEmbed(
+						'Hmm, I seem to have failed to get the image you provided from the Discord API! Please try again...'
+					),
+				],
+			});
 
-		const code = await LCCH.toCode(resp.data);
+		const code = await LCCH.toCode(response.data);
 
 		/* Error if LCCH.toCode failed (aka returned null) */
-		if (code == null) {
-			return interaction.reply('failed to create');
-		}
+		if (code == null)
+			return interaction.reply({
+				embeds: [createErrorEmbed('Whoops! I failed to create a code from that image!')],
+			});
 
 		/* Error if Code is too big (shouldn't happen after I implement the comments from the top) */
-		if (code.length >= 2000) {
-			return interaction.reply('code too big');
-		}
+		if (code.length >= 2000)
+			return interaction.reply({
+				embeds: [
+					createErrorEmbed(
+						'Sorry but the code is larger than I can send! (todo: create text file and send it)'
+					),
+				],
+			});
 
-		interaction.reply(code);
+		// Just copy and import it into the game!
+
+		// DISCLAIMER: If your crosshair doesn't seem right, please make sure that you are using a properly formatted crosshair png.
+		// Format:
+		// - Must have transparent background.
+		// - Must only use one color, with no slightly transparent pixels.
+		// - Must be under or atleast a 37 by 37 image.
+		// (Recommended to keep width and height the same)
+
+		return interaction.reply(code);
 	}
 })();

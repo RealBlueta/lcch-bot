@@ -10,5 +10,6 @@ export default new (class implements Command {
 	async run(interaction: ChatInputCommandInteraction) {
 		const client = interaction.client as Client;
 		interaction.reply('todo!');
+		// 🏓 66ms
 	}
 })();

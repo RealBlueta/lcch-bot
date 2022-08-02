@@ -10,5 +10,11 @@ export default new (class implements Command {
 	async run(interaction: ChatInputCommandInteraction) {
 		const client = interaction.client as Client;
 		interaction.reply('todo!');
+
+		// 📖 Credits
+		// - Bot Developer: SmellyJay#9440
+		// - Original "Crosshair Expander" Developer: https://twitter.com/Moulberry
+		// - Twitter User Runner: 
+		// - Support Server: https://inv.wtf/lcch
 	}
 })();

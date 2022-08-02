@@ -1,5 +1,7 @@
 import base64 from 'base-64';
+import { EmbedBuilder } from 'discord.js';
 import Jimp from 'jimp';
+import { EMBED_ERROR_COLOR } from './defaults';
 import { RGBA } from './types';
 
 export function encode_bytes(bytes: Uint8Array): string {
@@ -66,4 +68,16 @@ export class LCCH {
 			return null;
 		}
 	}
+}
+
+export function createErrorEmbed(message: string, reasons?: string[]): EmbedBuilder {
+	return new EmbedBuilder()
+		.setColor(EMBED_ERROR_COLOR)
+		.setAuthor({
+			iconURL:
+				'https://images-ext-1.discordapp.net/external/-AbUBTHVQLo7c_2abuzJQ4F8-YjyPs8NXiuh4zol_oI/https/cdn.discordapp.com/avatars/929913369786482759/bee37d0bc2557fb49445872f91e43a32.webp', // lcch logo
+			name: 'Uh oh...',
+		})
+		.setDescription(`**${message}**`)
+		.setFooter({ text: new Date().toUTCString() });
 }
