@@ -1,6 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../types';
-import { LCCH } from '../util';
 
 export default new (class implements Command {
 	data = new SlashCommandBuilder()
