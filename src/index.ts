@@ -7,7 +7,7 @@ import { readdirSync } from 'fs';
 async function main() {
 	// Create Bot Client
 	const client = new Client({
-		intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
+		intents: [GatewayIntentBits.Guilds],
 	});
 
 	// Load Comamnds
