@@ -18,12 +18,14 @@ export default new (class implements Command {
 	async run(interaction: ChatInputCommandInteraction) {
 		const input = interaction.options.getAttachment('input', true);
 
-		if (!input.contentType!.includes('image')) {
-			// tell user that the attatchment must be of type image
+		if (!input.contentType!.includes('image/png')) {
+			return interaction.reply('the file must be a PNG :P');
 		}
 
 		if (!(input.width! <= 37) && !(input.height! <= 37)) {
-			// tell user that the image must be below or atleast 37x37
+			return interaction.reply(
+				'soz but image must be under or atleast 37x37 (width and height)'
+			);
 		}
 
 		const resp = await axios.get(input.url, {
