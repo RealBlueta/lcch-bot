@@ -19,7 +19,7 @@ export default new (class implements Command {
 			.setColor(EMBED_COLOR)
 			.setAuthor({
 				iconURL:
-					'https://images-ext-2.discordapp.net/external/sgPVB2yZDBSt09iaBKvh5L-DXQfYWb4v91Urg7C0450/https/i.imgur.com/bMPc2TT.png',
+					'https://images-ext-2.discordapp.net/external/sgPVB2yZDBSt09iaBKvh5L-DXQfYWb4v91Urg7C0450/https/i.imgur.com/bMPc2TT.png', // wrench icon from discord
 				name: 'Commands',
 			})
 			.setDescription(
