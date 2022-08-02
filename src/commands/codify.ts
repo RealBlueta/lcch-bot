@@ -18,11 +18,13 @@ export default new (class implements Command {
 	async run(interaction: ChatInputCommandInteraction) {
 		const input = interaction.options.getAttachment('input', true);
 
+		/* Error if image is not of type PNG */
 		if (!input.contentType!.includes('image/png'))
 			return interaction.reply({
 				embeds: [createErrorEmbed('You must provide a proper PNG file!')],
 			});
 
+		/* Error if image is bigger than 37x37 */
 		if (!(input.width! <= 37) && !(input.height! <= 37))
 			return interaction.reply({
 				embeds: [
