@@ -1,12 +1,12 @@
 import 'dotenv/config';
 import Client from './components/client';
 import { Command } from './types';
-import { IntentsBitField } from 'discord.js';
+import { GatewayIntentBits } from 'discord.js';
 import { readdirSync } from 'fs';
 
 // Bot
 const client = new Client({
-	intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers],
+	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
 });
 
 async function main() {
