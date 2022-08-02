@@ -19,7 +19,7 @@ export default new (class implements Command {
 				name: 'Commands',
 			})
 			.setDescription(
-				`List Of Usable Bot Slash Commands:\n\`\`\`${commands.join('\n')}\`\`\``
+				`List of Usable Bot Slash Commands:\n\`\`\`${commands.join('\n')}\`\`\``
 			)
 			.setFooter({
 				text: new Date().toUTCString(),
